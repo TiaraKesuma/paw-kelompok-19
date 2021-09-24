@@ -1,0 +1,29 @@
+package com.pihda.paw19;
+
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pihda.paw19.entity.Student;
+
+import java.io.File;
+
+public class Paw19App {
+    public static void main(String[] args) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Student student = objectMapper.readValue(new File("data/sample-full.json"), Student.class);
+            System.out.println("First name: " + student.getFirstName());
+            System.out.println("Last name: " + student.getLastName());
+//            System.out.println("Active name: " + student.isActive());
+//            System.out.println("City name: " + student.getAddress().getCity());
+//            System.out.println("State name: " + student.getAddress().getState());
+//            System.out.println("Country name: " + student.getAddress().getCountry());
+//
+//            for (String languages: student.getLanguages()) {
+//                System.out.println(languages);
+//            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
