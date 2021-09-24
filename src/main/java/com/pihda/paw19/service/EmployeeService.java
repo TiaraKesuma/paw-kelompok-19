@@ -1,0 +1,17 @@
+package com.pihda.paw19.service;
+
+import com.pihda.paw19.entity.Employee;
+
+import java.util.List;
+
+public interface EmployeeService {
+
+    public List<Employee> getEmployees();
+
+    public void saveEmployee(Employee employee);
+
+    public Employee getEmployee(int id);
+
+    public void deleteEmployee(int id);
+
+}
