@@ -1,18 +1,16 @@
 package com.pihda.paw19.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Employee")
 public class Employee {
 
-    public Employee(String firstName, String lastName, Role role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.role = role;
-    }
+    private @Id
+    @GeneratedValue
+    @Column(name = "id")
+    Long id;
 
     protected Employee() {
 
@@ -34,27 +32,34 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public Role getRole() {
-        return role;
-    }
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
 
-    public void setRole(Role role) {
+    //    public enum Role {
+//        MANAGER,
+//        JANITOR,
+//        OFFICE_BOY,
+//        SECRETARY
+//    }
+    @Column(name = "role")
+    private String role;
+
+    public Employee(Long id, String firstName, String lastName, String role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.role = role;
     }
 
-    public enum Role {
-        MANAGER,
-        JANITOR,
-        OFFICE_BOY,
-        SECRETARY
+    public String getRole() {
+        return role;
     }
 
-    private @Id
-    @GeneratedValue
-    Long id;
-    private String firstName;
-    private String lastName;
-    private Role role;
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     @Override
     public boolean equals(Object o) {

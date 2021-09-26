@@ -1,13 +1,13 @@
 package com.pihda.paw19.dao;
 
-import java.util.List;
-
 import com.pihda.paw19.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 @Repository
@@ -33,15 +33,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         Session currentSession = sessionFactory.getCurrentSession();
 
         // create a query  ... sort by last name
-        Query<Employee> theQuery =
-                currentSession.createQuery("from Employee order by lastName",
-                        Employee.class);
+        List<Employee> theQuery = currentSession.createQuery("from Employee order by lastName",
+                Employee.class).getResultList();
 
         // execute query and get result list
-        List<Employee> employees = theQuery.getResultList();
 
         // return the results
-        return employees;
+        return theQuery;
     }
 
     @Override

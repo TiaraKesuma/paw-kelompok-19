@@ -1,5 +1,7 @@
 package com.pihda.paw19.config;
 
+//import antlr.StringUtils;
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages= "com.pihda.paw19")
-@PropertySource({ "classpath:persistence-mysql.properties" })
+@ComponentScan(basePackages = "com.pihda.paw19")
+@PropertySource({"classpath:persistence-sqlite.properties"})
 public class AppConfig {
 
 	// define a bean for ViewResolver
@@ -41,18 +42,9 @@ public class AppConfig {
 	}
 
 	@Autowired
-	public Environment getEnv() {
-		return env;
-	}
-	@Autowired
-	public void setEnv(Environment env) {
-		this.env = env;
-	}
-
-
 	private Environment env;
 
-	private final Logger logger = Logger.getLogger(getClass().getName());
+//	private Logger logger = Logger.getLogger(getClass().getName());
 
 	@Bean
 	public DataSource myDataSource() {
@@ -62,26 +54,13 @@ public class AppConfig {
 
 		// set the jdbc driver
 		try {
-			myDataSource.setDriverClass("com.mysql.jdbc.Driver");
+			myDataSource.setDriverClass("org.sqlite.JDBC");
 		}
 		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
 		}
 
-		// for sanity's sake, let's log url and user ... just to make sure we are reading the data
-		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
-		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
-
-		// set database connection props
 		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
-		myDataSource.setUser(env.getProperty("jdbc.user"));
-		myDataSource.setPassword(env.getProperty("jdbc.password"));
-
-		// set connection pool props
-		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
-		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
-		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
-		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
 
 		return myDataSource;
 	}
@@ -106,14 +85,15 @@ public class AppConfig {
 		String propVal = env.getProperty(propName);
 
 		// now convert to int
+		int intPropVal = Integer.parseInt(propVal);
 
-		return Integer.parseInt(propVal);
+		return intPropVal;
 	}
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory(){
 
-		// create session factorys
+		// create session factories
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
 		// set the properties
@@ -134,6 +114,7 @@ public class AppConfig {
 
 		return txManager;
 	}
+
 }
 
 
