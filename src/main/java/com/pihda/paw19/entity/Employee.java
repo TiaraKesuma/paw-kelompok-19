@@ -10,7 +10,7 @@ public class Employee {
     private @Id
     @GeneratedValue
     @Column(name = "id")
-    Long id;
+    int id;
 
     protected Employee() {
 
@@ -36,29 +36,34 @@ public class Employee {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-
-    //    public enum Role {
-//        MANAGER,
-//        JANITOR,
-//        OFFICE_BOY,
-//        SECRETARY
-//    }
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public Employee(Long id, String firstName, String lastName, String role) {
+    public Employee(int id, String firstName, String lastName, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
     }
 
-    public String getRole() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
+    }
+
+    public enum Role {
+        MANAGER,
+        JANITOR,
+        OFFICE_BOY,
+        SECRETARY
     }
 
     @Override

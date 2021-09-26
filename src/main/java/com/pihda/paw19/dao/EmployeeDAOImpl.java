@@ -39,6 +39,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         // execute query and get result list
 
         // return the results
+        System.out.println(theQuery.get(0).getRole());
         return theQuery;
     }
 
