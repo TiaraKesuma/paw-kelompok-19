@@ -13,14 +13,6 @@ public class Paw19App {
             Employee employee = objectMapper.readValue(new File("data/sample-full.json"), Employee.class);
             System.out.println("First name: " + employee.getFirstName());
             System.out.println("Last name: " + employee.getLastName());
-//            System.out.println("Active name: " + student.isActive());
-//            System.out.println("City name: " + student.getAddress().getCity());
-//            System.out.println("State name: " + student.getAddress().getState());
-//            System.out.println("Country name: " + student.getAddress().getCountry());
-//
-//            for (String languages: student.getLanguages()) {
-//                System.out.println(languages);
-//            }
         }
         catch (Exception e) {
             e.printStackTrace();
