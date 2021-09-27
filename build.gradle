@@ -43,6 +43,7 @@ dependencies {
     implementation 'org.springframework:spring-core:5.3.10'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
     implementation 'org.hibernate:hibernate-core:5.5.7.Final'
+    implementation 'org.springframework.data:spring-data-rest-webmvc:3.5.5'
     implementation 'c3p0:c3p0:0.9.1.2'
     runtimeOnly 'org.xerial:sqlite-jdbc:3.36.0.3'
     runtimeOnly 'com.github.gwenn:sqlite-dialect:0.1.2'
