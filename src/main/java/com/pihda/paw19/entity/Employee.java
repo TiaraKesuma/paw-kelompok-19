@@ -8,9 +8,11 @@ import java.util.Objects;
 public class Employee {
 
     private @Id
-    @GeneratedValue
+//    @GeneratedValue
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
-    int id;
+    Long id;
 
     protected Employee() {
 
@@ -40,14 +42,14 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Employee(int id, String firstName, String lastName, Role role) {
+    public Employee(Long id, String firstName, String lastName, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
