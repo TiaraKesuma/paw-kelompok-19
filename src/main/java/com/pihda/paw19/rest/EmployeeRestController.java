@@ -46,7 +46,7 @@ public class EmployeeRestController {
         // also just in case the pass an id in JSON ... set id to 0
         // this is force a save of new item ... instead of update
 
-        theEmployee.setId(0L);
+        theEmployee.setId(0);
 
         employeeService.saveEmployee(theEmployee);
 
