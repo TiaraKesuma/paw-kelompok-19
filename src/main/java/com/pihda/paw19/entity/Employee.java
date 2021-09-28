@@ -8,7 +8,8 @@ import java.util.Objects;
 public class Employee {
 
     private @Id
-    @GeneratedValue
+//    @GeneratedValue
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
 
@@ -45,6 +46,10 @@ public class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {

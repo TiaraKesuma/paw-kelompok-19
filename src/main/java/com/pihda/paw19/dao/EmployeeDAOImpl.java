@@ -32,14 +32,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         // get the current hibernate session
         Session currentSession = sessionFactory.getCurrentSession();
 
-        // create a query  ... sort by last name
-        List<Employee> theQuery = currentSession.createQuery("from Employee order by lastName",
-                Employee.class).getResultList();
-
         // execute query and get result list
 
         // return the results
-        return theQuery;
+        return currentSession.createQuery("from Employee",
+                Employee.class).getResultList();
     }
 
     @Override
@@ -48,7 +45,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         // get current hibernate session
         Session currentSession = sessionFactory.getCurrentSession();
 
-        // save/upate the employee ... finally LOL
+        // save/update the employee ... finally LOL
         currentSession.saveOrUpdate(theEmployee);
 
     }

@@ -1,12 +1,12 @@
 package com.pihda.paw19.service;
 
-import java.util.List;
-
 import com.pihda.paw19.dao.EmployeeDAO;
 import com.pihda.paw19.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -25,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void saveEmployee(Employee theEmployee) {
-
         employeeDAO.saveEmployee(theEmployee);
     }
 

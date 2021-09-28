@@ -3,6 +3,7 @@ package com.pihda.paw19.config;
 //import antlr.StringUtils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.pihda.paw19.entity.Employee;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,10 +11,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -26,9 +31,14 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.pihda.paw19")
 @PropertySource({"classpath:persistence-sqlite.properties"})
-public class AppConfig {
+@Component
+public class AppConfig implements RepositoryRestConfigurer {
 
 	// define a bean for ViewResolver
+	@Override
+	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+		config.exposeIdsFor(Employee.class);
+	}
 
 	@Bean
 	public ViewResolver viewResolver() {
