@@ -32,7 +32,7 @@ public class EmployeeRestController {
         Employee theEmployee = employeeService.getEmployee(employeeId);
 
         if (theEmployee == null) {
-//            throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
+            throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
         }
 
         return theEmployee;
@@ -74,7 +74,7 @@ public class EmployeeRestController {
         // throw exception if null
 
         if (tempEmployee == null) {
-//            throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
+            throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
         }
 
         employeeService.deleteEmployee(employeeId);
