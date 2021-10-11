@@ -9,6 +9,7 @@ plugins {
     id 'java'
     id 'war'
     id 'application'
+    id "io.freefair.lombok" version "6.2.0"
 }
 
 group = 'com.pihda'
@@ -41,7 +42,7 @@ dependencies {
     implementation 'org.springframework:spring-context:5.3.10'
     implementation 'org.springframework:spring-beans:5.3.10'
     implementation 'org.springframework:spring-core:5.3.10'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
     implementation 'org.hibernate:hibernate-core:5.5.7.Final'
     implementation 'org.springframework.data:spring-data-rest-webmvc:3.5.5'
     implementation 'c3p0:c3p0:0.9.1.2'
