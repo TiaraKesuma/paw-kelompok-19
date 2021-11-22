@@ -48,6 +48,8 @@ dependencies {
     implementation 'c3p0:c3p0:0.9.1.2'
     runtimeOnly 'org.xerial:sqlite-jdbc:3.36.0.3'
     runtimeOnly 'com.github.gwenn:sqlite-dialect:0.1.2'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:1.2.6'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7'
 }
 
 

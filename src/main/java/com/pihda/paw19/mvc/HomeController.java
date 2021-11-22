@@ -10,4 +10,10 @@ public class HomeController {
 	public String showPage() {
 		return "index";
 	}
+
+	@RequestMapping("/employees")
+	public String showEmployees() {
+		return "employees";
+	}
 }
+
