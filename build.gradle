@@ -10,6 +10,7 @@ plugins {
     id 'war'
     id 'application'
     id "io.freefair.lombok" version "6.2.0"
+    id "com.heroku.sdk.heroku-gradle" version "2.0.0"
 }
 
 group = 'com.pihda'
@@ -65,4 +66,9 @@ allprojects {
 
 test {
     useJUnitPlatform()
+}
+
+heroku {
+    appName = "pawkelompok19-backend"
+    jdkVersion = 11
 }
